@@ -8,23 +8,47 @@
 
 import UIKit
 
-class ResultsViewController: UIViewController {
-
+class ResultsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+    
+    var words: [String]!
+    var image: UIImage!
+    
+    // MARK: Outlets
+    @IBOutlet weak var restartButtonOutlet: UIButton!
+    @IBOutlet weak var imageOutlet: UIImageView!
+    @IBOutlet weak var wordLabel: UILabel!
+    @IBOutlet weak var resultsTable: UIImageView!
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        restartButtonOutlet.applyDesign()
         // Do any additional setup after loading the view.
+        
+        imageOutlet.image = image
+        
+        let joiner = ", "
+        let joinedString = words.joined(separator: joiner)
+        wordLabel.text = "For: " + joinedString
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    // MARK: Table View handlers
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
     }
-    */
-
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 5
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell: ResultTableViewCell = tableView.dequeueReusableCell(withIdentifier: "ResultCell", for: indexPath) as! ResultTableViewCell
+        
+        cell.lyricLabel.text = "Some lyrics"
+        cell.artistLabel.text = "Some artist"
+        cell.albumLabel.text = "Some almub"
+        
+        return cell
+    }
 }

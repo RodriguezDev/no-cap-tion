@@ -110,5 +110,16 @@ class WordSelectViewController: UIViewController, MagneticDelegate {
             let dvc = segue.destination as! ImageReviewViewController
             dvc.userImage = userImage
         }
+        if segue.identifier == "toResults" {
+            let dvc = segue.destination as! ResultsViewController
+            dvc.image = userImage
+            
+            var words = [String]()
+            for selected in magnetic!.selectedChildren {
+                words.append(selected.text!)
+            }
+            
+            dvc.words = words
+        }
     }
 }
