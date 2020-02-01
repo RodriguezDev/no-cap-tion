@@ -9,12 +9,22 @@
 import UIKit
 
 class ViewController: UIViewController {
-
+    
+    // MARK: Outlets
+    @IBOutlet weak var logoImage: UIImageView!
+    @IBOutlet weak var chooseImageButton: UIButton!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        
+        // Apply designs
+        chooseImageButton.applyDesign()
     }
 
-
+    // MARK: Actions
+    @IBAction func chooseImage(_ sender: Any) {
+        
+    }
+    
 }
 

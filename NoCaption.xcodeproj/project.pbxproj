@@ -13,6 +13,7 @@
 		A1446F4223E548230062D846 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A1446F4023E548230062D846 /* Main.storyboard */; };
 		A1446F4423E548250062D846 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A1446F4323E548250062D846 /* Assets.xcassets */; };
 		A1446F4723E548250062D846 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A1446F4523E548250062D846 /* LaunchScreen.storyboard */; };
+		A1446F4F23E54C3C0062D846 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1446F4E23E54C3C0062D846 /* Extensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,7 @@
 		A1446F4323E548250062D846 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A1446F4623E548250062D846 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A1446F4823E548250062D846 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A1446F4E23E54C3C0062D846 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,6 +61,7 @@
 				A1446F3A23E548230062D846 /* AppDelegate.swift */,
 				A1446F3C23E548230062D846 /* SceneDelegate.swift */,
 				A1446F3E23E548230062D846 /* ViewController.swift */,
+				A1446F4E23E54C3C0062D846 /* Extensions.swift */,
 				A1446F4023E548230062D846 /* Main.storyboard */,
 				A1446F4323E548250062D846 /* Assets.xcassets */,
 				A1446F4523E548250062D846 /* LaunchScreen.storyboard */,
@@ -141,6 +144,7 @@
 				A1446F3F23E548230062D846 /* ViewController.swift in Sources */,
 				A1446F3B23E548230062D846 /* AppDelegate.swift in Sources */,
 				A1446F3D23E548230062D846 /* SceneDelegate.swift in Sources */,
+				A1446F4F23E54C3C0062D846 /* Extensions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -294,7 +298,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.BuddyApps.NoCaption;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -312,7 +316,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.BuddyApps.NoCaption;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
