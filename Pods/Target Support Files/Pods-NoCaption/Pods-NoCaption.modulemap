@@ -1,0 +1,6 @@
+framework module Pods_NoCaption {
+  umbrella header "Pods-NoCaption-umbrella.h"
+
+  export *
+  module * { export * }
+}

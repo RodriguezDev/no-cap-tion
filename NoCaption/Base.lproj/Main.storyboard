@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="7OJ-bx-QZa">
     <device id="retina5_9" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15704"/>
@@ -41,7 +41,9 @@
                                     <constraint firstAttribute="width" constant="200" id="acP-8z-B6G"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="24"/>
-                                <state key="normal" title="Choose Image"/>
+                                <state key="normal" title="Choose Image">
+                                    <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
                                 <connections>
                                     <action selector="chooseImage:" destination="BYZ-38-t0r" eventType="touchUpInside" id="fZY-BF-A4u"/>
                                 </connections>
@@ -53,7 +55,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
-                        <color key="backgroundColor" red="1" green="0.36438234060402686" blue="0.32156862745098036" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" red="1" green="0.36470588235294116" blue="0.32156862745098036" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="0vq-Rh-llW" secondAttribute="trailing" constant="50" id="2Pf-ro-O47"/>
                             <constraint firstItem="m8I-lc-b7O" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="7Rg-Ng-anz"/>
@@ -83,21 +85,98 @@
             </objects>
             <point key="canvasLocation" x="139" y="138"/>
         </scene>
-        <!--View Controller-->
+        <!--Word Select View Controller-->
         <scene sceneID="4OP-ZN-dTL">
             <objects>
-                <viewController id="7OJ-bx-QZa" sceneMemberID="viewController">
+                <viewController id="7OJ-bx-QZa" customClass="WordSelectViewController" customModule="NoCaption" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Idf-2C-gsr">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lXp-a0-vxD">
+                                <rect key="frame" x="0.0" y="728" width="375" height="84"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vvP-6c-FWv">
+                                        <rect key="frame" x="0.0" y="12" width="375" height="41"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                        <state key="normal" title="Let's Go">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="continueTapped:" destination="7OJ-bx-QZa" eventType="touchUpInside" id="leF-zH-kbi"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" red="1" green="0.36470588235294116" blue="0.32156862745098036" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstItem="vvP-6c-FWv" firstAttribute="top" secondItem="lXp-a0-vxD" secondAttribute="top" constant="12" id="8Gs-ho-tM4"/>
+                                    <constraint firstAttribute="height" constant="84" id="bAd-xt-kKc"/>
+                                    <constraint firstItem="vvP-6c-FWv" firstAttribute="leading" secondItem="lXp-a0-vxD" secondAttribute="leading" id="cgf-M2-ulg"/>
+                                    <constraint firstAttribute="trailing" secondItem="vvP-6c-FWv" secondAttribute="trailing" id="h93-am-K1Q"/>
+                                    <constraint firstItem="vvP-6c-FWv" firstAttribute="centerX" secondItem="lXp-a0-vxD" secondAttribute="centerX" id="hho-fP-8Pe"/>
+                                </constraints>
+                            </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Here's what we're thinking..." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ioH-Je-DtS">
+                                <rect key="frame" x="24" y="68" width="294.66666666666669" height="33"/>
+                                <fontDescription key="fontDescription" name="AvenirNext-UltraLight" family="Avenir Next" pointSize="24"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Pick some of our suggestions, add some of your own words, I don't care." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8qB-48-4YU">
+                                <rect key="frame" x="24" y="107" width="327" height="44"/>
+                                <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="16"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="c6c-3z-T5w" customClass="MagneticView" customModule="Magnetic">
+                                <rect key="frame" x="0.0" y="223" width="375" height="497"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                            </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TSy-j4-9m2">
+                                <rect key="frame" x="137.66666666666666" y="167" width="100" height="40"/>
+                                <color key="backgroundColor" red="1" green="0.36470588240000001" blue="0.32156862749999998" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="100" id="0Mb-Zj-YVI"/>
+                                    <constraint firstAttribute="height" constant="40" id="Don-cC-ifG"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                <state key="normal" title="Add Word">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="addWordTapped:" destination="7OJ-bx-QZa" eventType="touchUpInside" id="v9M-fk-Gst"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="ioH-Je-DtS" firstAttribute="top" secondItem="cxc-JS-js6" secondAttribute="top" constant="24" id="1Cz-Ia-2b1"/>
+                            <constraint firstItem="c6c-3z-T5w" firstAttribute="leading" secondItem="cxc-JS-js6" secondAttribute="leading" id="6jC-Bt-VqF"/>
+                            <constraint firstItem="cxc-JS-js6" firstAttribute="trailing" secondItem="lXp-a0-vxD" secondAttribute="trailing" id="Fy6-3A-hro"/>
+                            <constraint firstItem="cxc-JS-js6" firstAttribute="trailing" secondItem="c6c-3z-T5w" secondAttribute="trailing" id="HqK-4v-LRg"/>
+                            <constraint firstItem="TSy-j4-9m2" firstAttribute="top" secondItem="8qB-48-4YU" secondAttribute="bottom" constant="16" id="Qre-CZ-J2H"/>
+                            <constraint firstItem="TSy-j4-9m2" firstAttribute="centerX" secondItem="Idf-2C-gsr" secondAttribute="centerX" id="REw-qv-MXF"/>
+                            <constraint firstItem="8qB-48-4YU" firstAttribute="leading" secondItem="cxc-JS-js6" secondAttribute="leading" constant="24" id="Sx0-LR-OOp"/>
+                            <constraint firstItem="lXp-a0-vxD" firstAttribute="leading" secondItem="cxc-JS-js6" secondAttribute="leading" id="aQM-1D-czh"/>
+                            <constraint firstItem="8qB-48-4YU" firstAttribute="top" secondItem="ioH-Je-DtS" secondAttribute="bottom" constant="6" id="bRE-zn-lFE"/>
+                            <constraint firstItem="c6c-3z-T5w" firstAttribute="top" secondItem="TSy-j4-9m2" secondAttribute="bottom" constant="16" id="cOl-e0-VjH"/>
+                            <constraint firstItem="ioH-Je-DtS" firstAttribute="leading" secondItem="cxc-JS-js6" secondAttribute="leading" constant="24" id="ewW-Ut-WyT"/>
+                            <constraint firstItem="lXp-a0-vxD" firstAttribute="top" secondItem="c6c-3z-T5w" secondAttribute="bottom" constant="8" id="qsP-PV-jso"/>
+                            <constraint firstAttribute="trailing" secondItem="8qB-48-4YU" secondAttribute="trailing" constant="24" id="uKr-QQ-r5Q"/>
+                            <constraint firstAttribute="bottom" secondItem="lXp-a0-vxD" secondAttribute="bottom" id="wDz-RP-fa1"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="cxc-JS-js6"/>
                     </view>
                     <navigationItem key="navigationItem" id="Liu-Kd-tkV"/>
+                    <connections>
+                        <outlet property="addWordButton" destination="TSy-j4-9m2" id="eFg-ff-kkK"/>
+                        <outlet property="bottomButtonVIew" destination="lXp-a0-vxD" id="Hy1-iO-zTj"/>
+                        <outlet property="magneticView" destination="c6c-3z-T5w" id="y8Z-du-hDh"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xwP-nn-JSS" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1162" y="137"/>
+            <point key="canvasLocation" x="1160.8" y="136.69950738916256"/>
         </scene>
     </scenes>
     <resources>
