@@ -15,11 +15,15 @@ class WordSelectViewController: UIViewController, MagneticDelegate {
     var magnetic: Magnetic?
     var counter = 0
     let MAX_WORDS = 5
+    
+    var userImage: UIImage!
+    var givenWords: NSArray!
 
     // MARK: Outlets
     @IBOutlet weak var bottomButtonVIew: UIView!
-    @IBOutlet weak var magneticView: MagneticView!
     @IBOutlet weak var addWordButton: UIButton!
+    @IBOutlet weak var continueButton: UIButton!
+    @IBOutlet weak var magneticView: MagneticView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,10 +36,17 @@ class WordSelectViewController: UIViewController, MagneticDelegate {
         magnetic = magneticView.magnetic
         magnetic?.magneticDelegate = self
         
-        for _ in 1...10 {
-            let node = Node(text: "Word", image: UIImage(named: "chevron"), color: UIColor.colors[counter % UIColor.colors.count], radius: 30)
+        for word in givenWords {
+            let node = Node(text: word as! String, image: UIImage(named: "chevron"), color: UIColor.colors[counter % UIColor.colors.count], radius: 45)
             magnetic!.addChild(node)
             counter += 1
+        }
+        
+        continueButton.setTitle("", for: UIControl.State.disabled)
+        
+        // TODO: Consider if we want all pre-populated nodes to be selected, so continue will always be enabled by default
+        if magnetic!.selectedChildren.count == 0 {
+            continueButton.isEnabled = false
         }
     }
     
@@ -59,7 +70,7 @@ class WordSelectViewController: UIViewController, MagneticDelegate {
             if let enteredText = textField?.text, enteredText != "" {
                 
                 // Add the node with the given values and set a correct color for the node.
-                self.magnetic!.addChild(Node(text: enteredText, image: UIImage(named: "chevron"), color: UIColor.colors[self.counter % UIColor.colors.count], radius: 30))
+                self.magnetic!.addChild(Node(text: enteredText, image: UIImage(named: "chevron"), color: UIColor.colors[self.counter % UIColor.colors.count], radius: 45))
                 
                 self.counter += 1
             }
@@ -73,10 +84,14 @@ class WordSelectViewController: UIViewController, MagneticDelegate {
         for node in magnetic!.selectedChildren {
             print(node.text!)
         }
+        
+        continueButton.loadingIndicator(true)
+        performSegue(withIdentifier: "toResults", sender: self)
     }
     
     // MARK: Magnetic methods
     func magnetic(_ magnetic: Magnetic, didSelect node: Node) {
+        continueButton.isEnabled = true
         // If the user selects a node when we're at capacity, uncheck it right after. Sneaky.
         if magnetic.selectedChildren.count > MAX_WORDS {
             node.isSelected = false
@@ -84,5 +99,16 @@ class WordSelectViewController: UIViewController, MagneticDelegate {
     }
 
     func magnetic(_ magnetic: Magnetic, didDeselect node: Node) {
+        if magnetic.selectedChildren.count == 0 {
+            continueButton.isEnabled = false
+        }
+    }
+    
+    // MARK: Navigation
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "toImageReview" {
+            let dvc = segue.destination as! ImageReviewViewController
+            dvc.userImage = userImage
+        }
     }
 }
