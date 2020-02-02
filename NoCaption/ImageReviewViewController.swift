@@ -18,8 +18,7 @@ class ImageReviewViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        bottomButtonView.layer.cornerRadius = 20;
-        
+        //bottomButtonView.layer.cornerRadius = 20;
         imageOutlet.image = userImage
     }
     

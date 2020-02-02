@@ -11,8 +11,8 @@ import UIKit
 class ResultTableViewCell: UITableViewCell {
     
     @IBOutlet weak var lyricLabel: UILabel!
+    @IBOutlet weak var songLabel: UILabel!
     @IBOutlet weak var artistLabel: UILabel!
-    @IBOutlet weak var albumLabel: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()

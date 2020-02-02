@@ -12,12 +12,14 @@ import Magnetic
 
 class WordSelectViewController: UIViewController, MagneticDelegate {
     
+    // Variables for the Magnetic bubble scene.
     var magnetic: Magnetic?
     var counter = 0
     let MAX_WORDS = 5
     
     var userImage: UIImage!
     var givenWords: NSArray!
+    var captions: NSArray!
 
     // MARK: Outlets
     @IBOutlet weak var bottomButtonVIew: UIView!
@@ -29,15 +31,16 @@ class WordSelectViewController: UIViewController, MagneticDelegate {
         super.viewDidLoad()
         
         // Apply designs
-        bottomButtonVIew.layer.cornerRadius = 20;
+        //bottomButtonVIew.layer.cornerRadius = 20;
         addWordButton.applyDesign()
         
         // Initialize the "bubble" view
         magnetic = magneticView.magnetic
         magnetic?.magneticDelegate = self
         
+        // Create the bubbles with the words given and set colors.
         for word in givenWords {
-            let node = Node(text: word as! String, image: UIImage(named: "chevron"), color: UIColor.colors[counter % UIColor.colors.count], radius: 45)
+            let node = Node(text: (word as! String), image: UIImage(named: "chevron"), color: UIColor.colors[counter % UIColor.colors.count], radius: 45)
             magnetic!.addChild(node)
             counter += 1
         }
@@ -54,7 +57,7 @@ class WordSelectViewController: UIViewController, MagneticDelegate {
     // Adds a word to the list of words
     @IBAction func addWordTapped(_ sender: Any) {
         //1. Create the alert controller.
-        let alert = UIAlertController(title: "Add a Word", message: "What should a the caption be about?", preferredStyle: .alert)
+        let alert = UIAlertController(title: "Add Word", message: "What should the caption be about?", preferredStyle: .alert)
 
         //2. Add the text field. You can configure it however you need.
         alert.addTextField { (textField) in
@@ -81,12 +84,46 @@ class WordSelectViewController: UIViewController, MagneticDelegate {
     }
     
     @IBAction func continueTapped(_ sender: Any) {
+        
+        // Create a list with the words from the selected bubbles.
+        var words = [String]()
+        
         for node in magnetic!.selectedChildren {
-            print(node.text!)
+            let text: String = node.text!
+            words += [text]
         }
         
+        print(words)
         continueButton.loadingIndicator(true)
-        performSegue(withIdentifier: "toResults", sender: self)
+        
+        let params = ["keywords": words] as Dictionary<String, [String]>
+        
+        var request = URLRequest(url: URL(string: "http://10.0.1.78:5000/api/v1/findlyric")!)
+        request.httpMethod = "POST"
+        request.httpBody = try? JSONSerialization.data(withJSONObject: params, options: [])
+        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+
+        let session = URLSession.shared
+        let task = session.dataTask(with: request, completionHandler: { data, response, error -> Void in
+            
+            do {
+                if error == nil {
+                    // Even better. Let's get ready for the final segue.
+                    let json = try JSONSerialization.jsonObject(with: data!) as! Dictionary<String, AnyObject>
+                    print(json)
+                    self.captions = (json["captions"] as! NSArray)
+
+                    self.completion(json: json)
+                } else {
+                    self.errorHandler(message: "Looks like there was an error.")
+                }
+            } catch {
+                self.errorHandler(message: "Unable to connect to server.")
+                print("Error parsing JSON")
+            }
+        })
+
+        task.resume()
     }
     
     // MARK: Magnetic methods
@@ -99,6 +136,7 @@ class WordSelectViewController: UIViewController, MagneticDelegate {
     }
 
     func magnetic(_ magnetic: Magnetic, didDeselect node: Node) {
+        // If no options are selected, hide the continue button.
         if magnetic.selectedChildren.count == 0 {
             continueButton.isEnabled = false
         }
@@ -120,6 +158,22 @@ class WordSelectViewController: UIViewController, MagneticDelegate {
             }
             
             dvc.words = words
+            dvc.captions = (captions as! [Any])
+        }
+    }
+    
+    // MARK: Completion handlers for post request.
+    // If successful.
+    func completion(json: Dictionary<String, AnyObject>) {
+        DispatchQueue.main.async(){
+            self.performSegue(withIdentifier: "toResults", sender: self)
+        }
+    }
+    
+    // If unsuccessful.
+    func errorHandler(message: String) {
+        DispatchQueue.main.async(){
+            self.continueButton.loadingIndicator(false)
         }
     }
 }

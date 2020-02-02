@@ -18,7 +18,6 @@
 		A1446F5123E5747A0062D846 /* WordSelectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1446F5023E5747A0062D846 /* WordSelectViewController.swift */; };
 		A1446F5323E59FFB0062D846 /* ImageReviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1446F5223E59FFB0062D846 /* ImageReviewViewController.swift */; };
 		A1446F5523E5A7EC0062D846 /* ResultsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1446F5423E5A7EC0062D846 /* ResultsViewController.swift */; };
-		A1ABBB3623E5B05800992D0E /* Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1ABBB3523E5B05800992D0E /* Network.swift */; };
 		A1ABBB3823E5D97600992D0E /* ResultTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1ABBB3723E5D97600992D0E /* ResultTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
@@ -37,7 +36,6 @@
 		A1446F5023E5747A0062D846 /* WordSelectViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordSelectViewController.swift; sourceTree = "<group>"; };
 		A1446F5223E59FFB0062D846 /* ImageReviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageReviewViewController.swift; sourceTree = "<group>"; };
 		A1446F5423E5A7EC0062D846 /* ResultsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultsViewController.swift; sourceTree = "<group>"; };
-		A1ABBB3523E5B05800992D0E /* Network.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Network.swift; sourceTree = "<group>"; };
 		A1ABBB3723E5D97600992D0E /* ResultTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultTableViewCell.swift; sourceTree = "<group>"; };
 		E4F16B16F6FA88D63A2D58D5 /* Pods_NoCaption.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NoCaption.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -98,13 +96,12 @@
 				A1446F5023E5747A0062D846 /* WordSelectViewController.swift */,
 				A1446F5223E59FFB0062D846 /* ImageReviewViewController.swift */,
 				A1446F5423E5A7EC0062D846 /* ResultsViewController.swift */,
+				A1ABBB3723E5D97600992D0E /* ResultTableViewCell.swift */,
 				A1446F4E23E54C3C0062D846 /* Extensions.swift */,
 				A1446F4023E548230062D846 /* Main.storyboard */,
-				A1ABBB3723E5D97600992D0E /* ResultTableViewCell.swift */,
 				A1446F4323E548250062D846 /* Assets.xcassets */,
 				A1446F4523E548250062D846 /* LaunchScreen.storyboard */,
 				A1446F4823E548250062D846 /* Info.plist */,
-				A1ABBB3523E5B05800992D0E /* Network.swift */,
 			);
 			path = NoCaption;
 			sourceTree = "<group>";
@@ -226,7 +223,6 @@
 			files = (
 				A1446F5323E59FFB0062D846 /* ImageReviewViewController.swift in Sources */,
 				A1446F3F23E548230062D846 /* ViewController.swift in Sources */,
-				A1ABBB3623E5B05800992D0E /* Network.swift in Sources */,
 				A1446F3B23E548230062D846 /* AppDelegate.swift in Sources */,
 				A1446F5523E5A7EC0062D846 /* ResultsViewController.swift in Sources */,
 				A1446F3D23E548230062D846 /* SceneDelegate.swift in Sources */,

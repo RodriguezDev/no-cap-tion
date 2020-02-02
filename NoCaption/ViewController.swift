@@ -29,6 +29,7 @@ class ViewController: UIViewController, UITextFieldDelegate, UIPickerViewDelegat
     // MARK: Actions
     @IBAction func chooseImage(_ sender: Any) {
         
+        // Let the user submit items from either the camera or gallery.
         let alert = UIAlertController(title: "Choose Image", message: nil, preferredStyle: .actionSheet)
         alert.addAction(UIAlertAction(title: "Camera", style: .default, handler: { _ in
             self.openCamera()
@@ -73,22 +74,22 @@ class ViewController: UIViewController, UITextFieldDelegate, UIPickerViewDelegat
         }
     }
     
+    // Handler for when the image is picked.
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         if let pickedImage = info[.originalImage] as? UIImage {
-            //logoImage.contentMode = .scaleToFill
             
             selectedImage = pickedImage
             
+            // Update the UI to reflect the choice.
             chooseImageButton.loadingIndicator(true)
             subText.text = "Thanks chief."
-            let base64Image = pickedImage.jpegData(compressionQuality: 1)?.base64EncodedString() ?? ""
             
             picker.dismiss(animated: true, completion: nil)
             
-            // Local IP: 169.234.114.44
+            let base64Image = pickedImage.jpegData(compressionQuality: 1)?.base64EncodedString() ?? ""
             let params = ["image": base64Image] as Dictionary<String, String>
             
-            var request = URLRequest(url: URL(string: "http://169.234.114.44:5000/api/v1/classify")!)
+            var request = URLRequest(url: URL(string: "http://10.0.1.78:5000/api/v1/classify")!)
             request.httpMethod = "POST"
             request.httpBody = try? JSONSerialization.data(withJSONObject: params, options: [])
             request.addValue("application/json", forHTTPHeaderField: "Content-Type")
@@ -97,11 +98,16 @@ class ViewController: UIViewController, UITextFieldDelegate, UIPickerViewDelegat
             let task = session.dataTask(with: request, completionHandler: { data, response, error -> Void in
                 
                 do {
-                    let json = try JSONSerialization.jsonObject(with: data!) as! Dictionary<String, AnyObject>
-                    self.words = json["keywords"] as? NSArray
-                    print(self.words ?? "")
+                    if error == nil {
+                        // If we're successful, cool. Let's prepare to move on.
+                        let json = try JSONSerialization.jsonObject(with: data!) as! Dictionary<String, AnyObject>
+                        self.words = json["keywords"] as? NSArray
+                        print(self.words ?? "")
 
-                    self.completion(json: json)
+                        self.completion(json: json)
+                    } else {
+                        self.errorHandler(message: "Looks like there was an issue.")
+                    }
                 } catch {
                     self.errorHandler(message: "Unable to connect to server.")
                     print("Error parsing JSON")
@@ -109,13 +115,7 @@ class ViewController: UIViewController, UITextFieldDelegate, UIPickerViewDelegat
             })
 
             task.resume()
-            
-//            // TODO: delete this trash.
-//            let seconds = 2.0
-//            DispatchQueue.main.asyncAfter(deadline: .now() + seconds) {
-//                // Put your code which should be executed with a delay here
-//                self.performSegue(withIdentifier: "showWords", sender: self)
-//            }
+
         } else {
             picker.dismiss(animated: true, completion: nil)
         }
@@ -126,25 +126,26 @@ class ViewController: UIViewController, UITextFieldDelegate, UIPickerViewDelegat
         if segue.identifier == "showWords" {
             let dvc = segue.destination as! WordSelectViewController
             
+            // Pass the image and words up.
             if (selectedImage != nil) {
                 dvc.userImage = selectedImage
             }
-            
             dvc.givenWords = words
         }
     }
     
-    // If successful signup.
+    // If the request is successful.
     func completion(json: Dictionary<String, AnyObject>) {
         DispatchQueue.main.async(){
            self.performSegue(withIdentifier: "showWords", sender: self)
         }
     }
     
-    // If signup is unsuccessful.
+    // If request is unsuccessful.
     func errorHandler(message: String) {
         DispatchQueue.main.async(){
-            
+            self.chooseImageButton.loadingIndicator(false)
+            self.subText.text = message
         }
     }
 }
