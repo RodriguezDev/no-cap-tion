@@ -20,6 +20,7 @@ class WordSelectViewController: UIViewController, MagneticDelegate {
     var userImage: UIImage!
     var givenWords: NSArray!
     var captions: NSArray!
+    var IP: String!
 
     // MARK: Outlets
     @IBOutlet weak var bottomButtonVIew: UIView!
@@ -97,8 +98,9 @@ class WordSelectViewController: UIViewController, MagneticDelegate {
         continueButton.loadingIndicator(true)
         
         let params = ["keywords": words] as Dictionary<String, [String]>
+        print(words)
         
-        var request = URLRequest(url: URL(string: "http://10.0.1.78:5000/api/v1/findlyric")!)
+        var request = URLRequest(url: URL(string: "http://" + IP + ":5000/api/v1/findlyric")!)
         request.httpMethod = "POST"
         request.httpBody = try? JSONSerialization.data(withJSONObject: params, options: [])
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")

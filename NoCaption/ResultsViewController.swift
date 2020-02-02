@@ -66,9 +66,9 @@ class ResultsViewController: UIViewController, UITableViewDelegate, UITableViewD
         let json = captions![indexPath.row] as! [String: String]
         
         // Fill in the cell with the recieved JSON data.
-        cell.lyricLabel.text = "\"" + json["lyric"]! + "\""
-        cell.songLabel.text = json["song"]!
-        cell.artistLabel.text = json["artist"]
+        cell.lyricLabel.text = "\"" + json["lyric"]!.trim() + "\""
+        cell.songLabel.text = json["song"]!.trim()
+        cell.artistLabel.text = json["artist"]!.trim()
         
         return cell
     }

@@ -13,6 +13,7 @@ class ViewController: UIViewController, UITextFieldDelegate, UIPickerViewDelegat
     let imagePicker = UIImagePickerController()
     var selectedImage: UIImage?
     var words: NSArray?
+    var IP = ""
     
     // MARK: Outlets
     @IBOutlet weak var logoImage: UIImageView!
@@ -22,8 +23,46 @@ class ViewController: UIViewController, UITextFieldDelegate, UIPickerViewDelegat
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        let defaults = UserDefaults.standard
+        
+        if let savedIP = defaults.string(forKey: "IP") {
+            IP = savedIP
+        }
+        
         // Apply designs
         chooseImageButton.applyDesign()
+        
+        // Let users tap on the image to view it larger in another view controller.
+        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(ViewController.cellTappedMethod(_:)))
+        
+        logoImage.isUserInteractionEnabled = true
+        logoImage.addGestureRecognizer(tapGestureRecognizer)
+    }
+    
+    @objc func cellTappedMethod(_ sender:AnyObject){
+       //1. Create the alert controller.
+       let alert = UIAlertController(title: "IP Time", message: "You know what to do.", preferredStyle: .alert)
+
+       //2. Add the text field. You can configure it however you need.
+       alert.addTextField { (textField) in
+           textField.text = ""
+       }
+       
+       let cancel = UIAlertAction(title: "Cancel", style: .cancel) { (alertAction) in }
+       alert.addAction(cancel)
+
+       // 3. Grab the value from the text field, and print it when the user clicks OK.
+       alert.addAction(UIAlertAction(title: "Enter", style: .default, handler: { [weak alert] (_) in
+           let textField = alert?.textFields![0] // Force unwrapping because we know it exists.
+           if let enteredText = textField?.text, enteredText != "" {
+               self.IP = enteredText
+            let defaults = UserDefaults.standard
+            defaults.set(self.IP, forKey: "IP")
+           }
+       }))
+       
+       // 4. Present the alert.
+       self.present(alert, animated: true, completion: nil)
     }
 
     // MARK: Actions
@@ -89,7 +128,7 @@ class ViewController: UIViewController, UITextFieldDelegate, UIPickerViewDelegat
             let base64Image = pickedImage.jpegData(compressionQuality: 1)?.base64EncodedString() ?? ""
             let params = ["image": base64Image] as Dictionary<String, String>
             
-            var request = URLRequest(url: URL(string: "http://10.0.1.78:5000/api/v1/classify")!)
+            var request = URLRequest(url: URL(string: "http://" + IP + ":5000/api/v1/classify")!)
             request.httpMethod = "POST"
             request.httpBody = try? JSONSerialization.data(withJSONObject: params, options: [])
             request.addValue("application/json", forHTTPHeaderField: "Content-Type")
@@ -131,6 +170,7 @@ class ViewController: UIViewController, UITextFieldDelegate, UIPickerViewDelegat
                 dvc.userImage = selectedImage
             }
             dvc.givenWords = words
+            dvc.IP = IP
         }
     }
     

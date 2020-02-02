@@ -24,7 +24,7 @@
 /* Begin PBXFileReference section */
 		30F9184AB018BFA4CA5A48C9 /* Pods-NoCaption.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NoCaption.release.xcconfig"; path = "Target Support Files/Pods-NoCaption/Pods-NoCaption.release.xcconfig"; sourceTree = "<group>"; };
 		99DD9D439721C50B70F2DE6E /* Pods-NoCaption.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NoCaption.debug.xcconfig"; path = "Target Support Files/Pods-NoCaption/Pods-NoCaption.debug.xcconfig"; sourceTree = "<group>"; };
-		A1446F3723E548230062D846 /* NoCaption.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NoCaption.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		A1446F3723E548230062D846 /* NoCap(tion).app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "NoCap(tion).app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A1446F3A23E548230062D846 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A1446F3C23E548230062D846 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		A1446F3E23E548230062D846 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -82,7 +82,7 @@
 		A1446F3823E548230062D846 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				A1446F3723E548230062D846 /* NoCaption.app */,
+				A1446F3723E548230062D846 /* NoCap(tion).app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -125,7 +125,7 @@
 			);
 			name = NoCaption;
 			productName = NoCaption;
-			productReference = A1446F3723E548230062D846 /* NoCaption.app */;
+			productReference = A1446F3723E548230062D846 /* NoCap(tion).app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -143,7 +143,7 @@
 					};
 				};
 			};
-			buildConfigurationList = A1446F3223E548230062D846 /* Build configuration list for PBXProject "NoCaption" */;
+			buildConfigurationList = A1446F3223E548230062D846 /* Build configuration list for PBXProject "NoCap(tion)" */;
 			compatibilityVersion = "Xcode 9.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -381,7 +381,7 @@
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.BuddyApps.NoCaption;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "NoCap(tion)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -400,7 +400,7 @@
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.BuddyApps.NoCaption;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "NoCap(tion)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -409,7 +409,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		A1446F3223E548230062D846 /* Build configuration list for PBXProject "NoCaption" */ = {
+		A1446F3223E548230062D846 /* Build configuration list for PBXProject "NoCap(tion)" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				A1446F4923E548250062D846 /* Debug */,
